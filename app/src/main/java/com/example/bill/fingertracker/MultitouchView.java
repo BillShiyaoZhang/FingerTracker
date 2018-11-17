@@ -17,11 +17,16 @@ public class MultitouchView extends View{
 	private ColorArraySet colorsL;
 	private static final int[] COLORS = {Color.BLUE, Color.GREEN, Color.BLACK, Color.CYAN, Color.GRAY};
 	private CountedPoint[] points;
+	private boolean status = false;
 
 	public MultitouchView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView();
 	}
+
+	public void setStatus(boolean status){
+	    this.status = status;
+    }
 	
 	private void initView(){
 		mActivePointers = new SparseArray<CountedPoint>();

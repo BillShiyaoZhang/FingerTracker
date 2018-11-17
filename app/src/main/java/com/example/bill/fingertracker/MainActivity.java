@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final MultitouchView multitouchView = (MultitouchView) findViewById(R.id.view_touch);
         final Button person = (Button) findViewById(R.id.button_person);
         person.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ON = !ON;
+                multitouchView.setStatus(ON);
                 if (ON){
                     person.setVisibility(View.INVISIBLE);
                     task.setVisibility(View.INVISIBLE);
