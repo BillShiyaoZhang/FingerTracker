@@ -14,7 +14,6 @@ public class MultitouchView extends View{
 	
 	private SparseArray<CountedPoint> mActivePointers;
 	private Paint mPaint;
-	private Paint textPaint;
 	private ColorArraySet colorsL;
 	private static final int[] COLORS = {Color.BLUE, Color.GREEN, Color.BLACK, Color.CYAN, Color.GRAY};
 	private CountedPoint[] points;
@@ -27,8 +26,6 @@ public class MultitouchView extends View{
 	private void initView(){
 		mActivePointers = new SparseArray<CountedPoint>();
 		mPaint = new Paint();
-		textPaint = new Paint();
-		textPaint.setTextSize(25);
 		points = new CountedPoint[mActivePointers.size()];
 		colorsL = new ColorArraySet();
 	}
@@ -76,26 +73,7 @@ public class MultitouchView extends View{
 				mPaint.setColor(points[i].color);
 			canvas.drawCircle(point.point.x, point.point.y, 100, mPaint);
 		}
-		
-		//  Count intersections
-		for(int i = 0; i < points.length; i++){
-			for(int j = i+1; j< points.length;j++){
-				double distance = Math.sqrt((points[i].point.x - points[j].point.x) *(points[i].point.x - points[j].point.x) + (points[i].point.y - points[j].point.y) *(points[i].point.y - points[j].point.y));
-				if (distance < 200){
-					points[i].status = true;
-					points[j].status = true;					
-				}
-			}
-		}
-		int count = 0;
-		for (int i = 0; i < points.length; i++){
-			if(points[i].status == true)
-				count++;
-		}
-		if(points.length > 0 && count == 0)
-			count = 1;
-		
-		canvas.drawText("Intersecting Circles: " + count, 10, 40, textPaint);
+
 	}
 	
 	class CountedPoint{
