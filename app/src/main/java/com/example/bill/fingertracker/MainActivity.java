@@ -19,6 +19,8 @@ import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static boolean ON = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +41,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         final Button status = (Button) findViewById(R.id.button_status);
-//        status.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            }
-//        });
+        status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ON = !ON;
+                if (ON){
+                    person.setVisibility(View.INVISIBLE);
+                    task.setVisibility(View.INVISIBLE);
+                    status.setText("Stop");
+                }else{
+                    person.setVisibility(View.VISIBLE);
+                    task.setVisibility(View.VISIBLE);
+                    status.setText("Start");
+                    // Store Data
+                }
+            }
+        });
 
 //        writeToFile("test", "Hello world! This is a test");
     }
