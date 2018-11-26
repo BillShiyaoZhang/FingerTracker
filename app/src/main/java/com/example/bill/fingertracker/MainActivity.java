@@ -26,19 +26,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final TextView text_task = (TextView) findViewById(R.id.text_task);
         final MultitouchView multitouchView = (MultitouchView) findViewById(R.id.view_touch);
-        final Button person = (Button) findViewById(R.id.button_person);
-        person.setOnClickListener(new View.OnClickListener() {
+        final Button button_person = (Button) findViewById(R.id.button_person);
+        button_person.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                setButtonDialog(person);
+            public void onClick(View v) {setButtonDialog(button_person);
             }
         });
-        final Button task = (Button) findViewById(R.id.button_task);
-        task.setOnClickListener(new View.OnClickListener() {
+        final Button button_task = (Button) findViewById(R.id.button_task);
+        button_task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setButtonDialog(task);
+                setButtonDialog(button_task);
+                String task = "Please type following contents";
+                switch (button_task.getText().toString()){
+                    case "1":
+                        task += ":\n";
+                }
+                text_task.setText(task);
             }
         });
         final Button status = (Button) findViewById(R.id.button_status);
@@ -47,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ON = !ON;
                 multitouchView.setStatus(ON);
-                if (ON){
-                    person.setVisibility(View.INVISIBLE);
-                    task.setVisibility(View.INVISIBLE);
+                if (ON) {
+                    button_person.setVisibility(View.INVISIBLE);
+                    button_task.setVisibility(View.INVISIBLE);
                     status.setText("Stop");
-                }else{
-                    person.setVisibility(View.VISIBLE);
-                    task.setVisibility(View.VISIBLE);
+                } else {
+                    button_person.setVisibility(View.VISIBLE);
+                    button_task.setVisibility(View.VISIBLE);
                     status.setText("Start");
                     // Store Data
                 }
