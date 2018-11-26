@@ -20,7 +20,7 @@ public class MultitouchView extends View {
     private SparseArray<CountedPoint> mActivePointers;
     private Paint mPaint;
     private ColorArraySet colorsL;
-    private static final int[] COLORS = {Color.BLUE, Color.GREEN, Color.BLACK, Color.CYAN, Color.GRAY};
+    private static final int[] COLORS = {Color.BLUE, Color.GREEN, Color.BLACK, Color.CYAN, Color.GRAY, Color.RED, Color.YELLOW, Color.MAGENTA, Color.DKGRAY, Color.LTGRAY};
     private CountedPoint[] points;
     private boolean status = false;
     private FileOutputStream fileOutputStream;
@@ -32,11 +32,11 @@ public class MultitouchView extends View {
         initView();
     }
 
-    public void setButton_person(Button button){
+    public void setButton_person(Button button) {
         button_person = button;
     }
 
-    public void setButton_task(Button button){
+    public void setButton_task(Button button) {
         button_task = button;
     }
 
@@ -105,7 +105,7 @@ public class MultitouchView extends View {
                 }
                 // store data
                 try {
-                    fileOutputStream.write((point.point.x + "," + point.point.y + ",").getBytes());
+                    fileOutputStream.write((point.point.x + "," + point.point.y + "," + point.color + "\n").getBytes());
                     fileOutputStream.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
