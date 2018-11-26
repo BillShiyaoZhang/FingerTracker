@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView text_task = (TextView) findViewById(R.id.text_task);
         final MultitouchView multitouchView = (MultitouchView) findViewById(R.id.view_touch);
         final Button button_person = (Button) findViewById(R.id.button_person);
         button_person.setOnClickListener(new View.OnClickListener() {
@@ -39,12 +38,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setButtonDialog(button_task);
-                String task = "Please type following contents";
-                switch (button_task.getText().toString()){
-                    case "1":
-                        task += ":\n";
-                }
-                text_task.setText(task);
             }
         });
         final Button status = (Button) findViewById(R.id.button_status);
@@ -66,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        multitouchView.setButton_person(button_person);
+        multitouchView.setButton_task(button_task);
+
 //        writeToFile("test", "Hello world! This is a test");
     }
 
@@ -83,6 +79,17 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         EditText edit_text = (EditText) dialogView.findViewById(R.id.edit_text);
                         button.setText(edit_text.getText().toString());
+                        if (button.getId() == R.id.button_task){
+                            String task = "Please type following contents";
+                            switch (button.getText().toString()){
+                                case "1":
+                                    task += ":\nTask 1:";
+                                    break;
+                                default:
+                                    task += "\nWrong!";
+                            }
+                            ((TextView) findViewById(R.id.text_task)).setText(task);
+                        }
                     }
                 });
         customizeDialog.show();

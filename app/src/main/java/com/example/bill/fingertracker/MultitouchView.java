@@ -24,10 +24,20 @@ public class MultitouchView extends View {
     private CountedPoint[] points;
     private boolean status = false;
     private FileOutputStream fileOutputStream;
+    private Button button_person;
+    private Button button_task;
 
     public MultitouchView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView();
+    }
+
+    public void setButton_person(Button button){
+        button_person = button;
+    }
+
+    public void setButton_task(Button button){
+        button_task = button;
     }
 
     public void setStatus(boolean status) {
@@ -140,7 +150,7 @@ public class MultitouchView extends View {
                 mActivePointers.put(pointerId, cp);
                 if (fileOutputStream == null) {
                     try {
-                        fileOutputStream = getContext().openFileOutput(((Button) findViewById(R.id.button_person)).getText() + "-" + ((Button) findViewById(R.id.button_task)).getText().toString(), Context.MODE_PRIVATE);
+                        fileOutputStream = getContext().openFileOutput(button_person.getText() + "-" + button_task.getText().toString(), Context.MODE_PRIVATE);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
