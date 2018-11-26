@@ -88,7 +88,7 @@ public class MultitouchView extends View {
                 // try FileOutputStream
                 if (fileOutputStream == null) {
                     try {
-                        fileOutputStream = getContext().openFileOutput(((Button) findViewById(R.id.button_person)).getText() + ((Button) findViewById(R.id.button_task)).getText().toString(), Context.MODE_PRIVATE);
+                        fileOutputStream = getContext().openFileOutput(((Button) findViewById(R.id.button_person)).getText() + "-" + ((Button) findViewById(R.id.button_task)).getText().toString(), Context.MODE_PRIVATE);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -140,7 +140,7 @@ public class MultitouchView extends View {
                 mActivePointers.put(pointerId, cp);
                 if (fileOutputStream == null) {
                     try {
-                        fileOutputStream = getContext().openFileOutput(((Button) findViewById(R.id.button_person)).getText() + ((Button) findViewById(R.id.button_task)).getText().toString(), Context.MODE_PRIVATE);
+                        fileOutputStream = getContext().openFileOutput(((Button) findViewById(R.id.button_person)).getText() + "-" + ((Button) findViewById(R.id.button_task)).getText().toString(), Context.MODE_PRIVATE);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
