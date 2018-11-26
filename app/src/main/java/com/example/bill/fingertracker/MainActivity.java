@@ -4,16 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.FileOutputStream;
 
@@ -40,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 setButtonDialog(button_task);
             }
         });
-        final Button status = (Button) findViewById(R.id.button_status);
-        status.setOnClickListener(new View.OnClickListener() {
+        final Button button_status = (Button) findViewById(R.id.button_status);
+        button_status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ON = !ON;
@@ -49,12 +46,11 @@ public class MainActivity extends AppCompatActivity {
                 if (ON) {
                     button_person.setVisibility(View.INVISIBLE);
                     button_task.setVisibility(View.INVISIBLE);
-                    status.setText("Stop");
+                    button_status.setText("Stop");
                 } else {
                     button_person.setVisibility(View.VISIBLE);
                     button_task.setVisibility(View.VISIBLE);
-                    status.setText("Start");
-                    // Store Data
+                    button_status.setText("Start");
                 }
             }
         });
@@ -80,11 +76,27 @@ public class MainActivity extends AppCompatActivity {
                         EditText edit_text = (EditText) dialogView.findViewById(R.id.edit_text);
                         button.setText(edit_text.getText().toString());
                         if (button.getId() == R.id.button_task){
-                            String task = "Please type following contents";
+                            String task = "Please type following sentences:";
                             switch (button.getText().toString()){
                                 case "1":
-                                    task += ":\nTask 1:";
+                                    task += ":\nThe quick brown fox jumps over the lazy dog.";
                                     break;
+                                case "2":
+                                    task += "\nSphinx of black quartz, judge my vow.";
+                                    break;
+                                case "3":
+                                    task += "\nJackdaws love my big sphinx of quartz.";
+                                    break;
+                                case "4":
+                                    task += "\nPack my box with five dozen liquor jugs.";
+                                    break;
+                                case "5":
+                                    task += "\nThe quick onyx goblin jumps over the lazy dwarf.";
+                                    break;
+                                case "6":
+                                    task += "\nCwm fjord bank glyphs vext quiz.";
+                                    break;
+
                                 default:
                                     task += "\nWrong!";
                             }

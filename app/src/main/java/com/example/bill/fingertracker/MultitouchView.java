@@ -14,6 +14,7 @@ import android.widget.Button;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class MultitouchView extends View {
 
@@ -105,7 +106,7 @@ public class MultitouchView extends View {
                 }
                 // store data
                 try {
-                    fileOutputStream.write((point.point.x + "," + point.point.y + "," + point.color + "\n").getBytes());
+                    fileOutputStream.write((point.point.x + "," + point.point.y + "," + point.color + "," + Calendar.getInstance().getTimeInMillis() + "\n").getBytes());
                     fileOutputStream.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -114,6 +115,7 @@ public class MultitouchView extends View {
                 // close FileOutputStream
                 try {
                     fileOutputStream.close();
+                    fileOutputStream = null;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
