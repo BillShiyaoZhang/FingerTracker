@@ -115,7 +115,6 @@ public class MultitouchView extends View {
                 // close FileOutputStream
                 try {
                     fileOutputStream.close();
-                    fileOutputStream = null;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
